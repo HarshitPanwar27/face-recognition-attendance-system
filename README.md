@@ -1,20 +1,97 @@
-# Face Recognition Attendance System
+# 🎓 Face Recognition Attendance System
 
-**Developed by Harshit Panwar**
+A desktop application that automates classroom attendance using real-time
+face recognition — register students, train a model per class group, and
+mark attendance by walking past a webcam.
 
-## Files in This Project
+![Python](https://img.shields.io/badge/Python-3.8%2B-3776AB?logo=python&logoColor=white)
+![PyQt5](https://img.shields.io/badge/GUI-PyQt5-41CD52?logo=qt&logoColor=white)
+![OpenCV](https://img.shields.io/badge/CV-OpenCV%20LBPH-5C3EE8?logo=opencv&logoColor=white)
+![Platform](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey)
+![Status](https://img.shields.io/badge/status-active-success)
 
-| File | Purpose |
-|---|---|
-| `main.py` | **Run this** — PyQt5 GUI (sidebar navigation + Dashboard) |
-| `core.py` | All backend logic (capture, train, attendance, CSV) |
-| `courses.py` | Course catalog — edit to add/change subjects |
-| `styles.py` | Theme constants (palette, fonts, component styles) |
-| `requirements.txt` | Python dependencies |
+**Developed by [Harshit Panwar](https://github.com/HarshitPanwar27)**
 
 ---
 
-## One-Time Setup
+## 📑 Table of Contents
+
+- [✨ Features](#-features)
+- [📸 Screenshots](#-screenshots)
+- [🗂️ Project Structure](#️-project-structure)
+- [🧰 Tech Stack](#-tech-stack)
+- [⚙️ One-Time Setup](#️-one-time-setup)
+- [🖥️ How to Use the GUI](#️-how-to-use-the-gui)
+- [📁 Attendance Folder Structure](#-attendance-folder-structure)
+- [🏫 Batches](#-batches)
+- [🛠️ Troubleshooting](#️-troubleshooting)
+- [⚡ Quick Start Commands](#-quick-start-commands)
+- [🧭 Roadmap](#-roadmap)
+- [📄 License](#-license)
+
+---
+
+## ✨ Features
+
+- 🖥️ **Modern desktop GUI** — sidebar navigation with a live Dashboard, built in PyQt5
+- 📷 **Automated dataset capture** — Haar Cascade face detection, 100 samples per student
+- 🧠 **Per-class-group training** — one LBPH recognition model per Department × Semester × Batch
+- ✅ **Real-time attendance marking** — color-coded recognition feed (present / unknown / wrong class)
+- 📊 **Reports & analytics** — session history, present/absent pie charts, CSV records
+- 🗂️ **Organized by class** — Department → Semester → Batch structure throughout
+
+---
+
+## 📸 Screenshots
+
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Analytics Dashboard
+
+![Analytics Dashboard](screenshots/analytics.png)
+---
+
+## 🗂️ Project Structure
+
+```
+face-recognition-attendance-system/
+├── main.py                       # Run this — PyQt5 GUI (sidebar + Dashboard)
+├── core.py                       # Backend logic: capture, train, attendance, CSV
+├── courses.py                    # Course catalog — edit to add/change subjects
+├── styles.py                     # Theme constants (palette, fonts, components)
+├── 1_capture_dataset.py          # Standalone CLI: capture a student's face dataset
+├── 2_train_model.py              # Standalone CLI: train LBPH models
+├── 3_take_attendance.py          # Standalone CLI: run an attendance session
+├── requirements.txt              # Python dependencies
+├── student_registry.example.json # Sample registry format (no real data)
+├── .gitignore
+└── README.md
+
+# Generated at runtime — gitignored, not in the repo:
+├── dataset/        # captured face images, per student
+├── trainer/        # trained .yml models, per class group
+├── attendance/      # per-session CSV attendance records
+└── student_registry.json
+```
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| GUI | [PyQt5](https://pypi.org/project/PyQt5/) |
+| Face detection | OpenCV Haar Cascade |
+| Face recognition | OpenCV LBPH (`cv2.face.LBPHFaceRecognizer`) |
+| Charts | Matplotlib |
+| Data | JSON (registry) + CSV (attendance records) |
+
+---
+
+## ⚙️ One-Time Setup
 
 ### 1. Install Python 3.8+
 Download from https://python.org — check **"Add Python to PATH"**
@@ -44,7 +121,7 @@ python main.py
 
 ---
 
-## How to Use the GUI
+## 🖥️ How to Use the GUI
 
 The app opens with a **left sidebar** for navigation and a **Dashboard** as
 the landing page. Click any sidebar item to switch pages — your place in
@@ -74,16 +151,12 @@ Click **Start Capture** → webcam opens → student looks at camera → 100 pho
 
 Repeat for every student in the batch.
 
----
-
 ### 🧠 Train Model
 Click **Start Training** after all students are captured.
 
 - Trains one LBPH model per class group (Dept × Semester × Batch)
 - Live training log shown on screen
 - Re-run anytime a new student is added
-
----
 
 ### ✅ Take Attendance
 Run this at the start of every class.
@@ -104,8 +177,6 @@ Run this at the start of every class.
 
 Click **End Session & Save** when done.
 
----
-
 ### 📊 Reports
 View all past sessions with:
 - Full attendance table (Present / Absent per student)
@@ -114,7 +185,7 @@ View all past sessions with:
 
 ---
 
-## Attendance Folder Structure
+## 📁 Attendance Folder Structure
 
 ```
 attendance/
@@ -134,7 +205,7 @@ Each CSV contains every student in the batch:
 
 ---
 
-## Batches
+## 🏫 Batches
 
 | Department | Batches |
 |---|---|
@@ -143,7 +214,7 @@ Each CSV contains every student in the batch:
 
 ---
 
-## Troubleshooting
+## 🛠️ Troubleshooting
 
 | Problem | Fix |
 |---|---|
@@ -158,7 +229,7 @@ Each CSV contains every student in the batch:
 
 ---
 
-## Quick Start Commands
+## ⚡ Quick Start Commands
 
 ```bash
 # Install everything
@@ -167,3 +238,28 @@ pip install PyQt5 opencv-contrib-python numpy matplotlib
 # Launch the application
 python main.py
 ```
+
+---
+
+## 🧭 Roadmap
+
+Ideas for future iterations — not yet implemented:
+
+- [ ] Export attendance reports to PDF
+- [ ] Switch to a deep-learning face embedding model (e.g. FaceNet/dlib) for higher accuracy
+- [ ] Multi-camera support for larger classrooms
+- [ ] Email/SMS notification for low-attendance students
+
+---
+
+## 📄 License
+
+See [`LICENSE`](LICENSE) for details.
+
+---
+
+<div align="center">
+
+**Built by [Harshit Panwar](https://github.com/HarshitPanwar27)**
+
+</div>
