@@ -252,11 +252,6 @@ Ideas for future iterations — not yet implemented:
 
 ---
 
-## 📄 License
-
-See [`LICENSE`](LICENSE) for details.
-
----
 
 <div align="center">
 
