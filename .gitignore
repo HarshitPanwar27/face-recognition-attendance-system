@@ -1,0 +1,15 @@
+dataset/
+trainer/
+attendance/
+
+student_registry.json
+
+**pycache**/
+*.pyc
+
+.vscode/
+.idea/
+
+.venv/
+venv/
+env/

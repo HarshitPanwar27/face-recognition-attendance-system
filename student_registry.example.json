@@ -1,0 +1,14 @@
+{
+"1": {
+"name": "Student One",
+"department": "ECE",
+"semester": 1,
+"batch": "A1"
+},
+"2": {
+"name": "Student Two",
+"department": "CSE",
+"semester": 1,
+"batch": "B1"
+}
+}
