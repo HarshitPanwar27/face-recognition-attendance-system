@@ -27,7 +27,6 @@ mark attendance by walking past a webcam.
 - [🛠️ Troubleshooting](#️-troubleshooting)
 - [⚡ Quick Start Commands](#-quick-start-commands)
 - [🧭 Roadmap](#-roadmap)
-- [📄 License](#-license)
 
 ---
 
